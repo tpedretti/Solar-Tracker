@@ -34,8 +34,10 @@ void loop()
 	int avl = (lt + ld) / 2; // average value left
 	int avr = (rt + rd) / 2; // average value right
 
-	int dvert = avt - avd; // check the diffirence of up and down
-	int dhoriz = avl - avr;// check the diffirence og left and rigt
+	int dvert = abs(avt - avd); // check the diffirence of up and down
+	int dhoriz = abs(avl - avr);// check the diffirence og left and rigt
+
+	int tol = 20;
 
 	Serial.print("Top Left PR: ");
 	Serial.print(lt);
@@ -70,6 +72,49 @@ void loop()
 	Serial.print("\nServov: ");
 	Serial.println(vertical.read());
 
+	/*if(dvert > tol)
+	{
+		if(avt > avd)
+		{
+			servov--;
+			if(servov < 60)
+			{
+				servov = 60;
+			}
+		}
+		else if(avd > avt)
+		{
+			servov++;
+			if(servov > 180)
+			{
+				servov = 180;
+			}
+		}
+
+		vertical.write(servov);
+	}
+
+	if(dvert > tol)
+	{
+		if(avl > avr)
+		{
+			servoh--;
+			if(servoh < 0)
+			{
+				servoh = 0;
+			}
+		}
+		else if(avr > avl)
+		{
+			servoh++;
+			if(servoh > 180)
+			{
+				servoh = 180;
+			}
+		}
+
+		horizontal.write(servoh);
+	}*/
 
 	delay(10000);
 }
